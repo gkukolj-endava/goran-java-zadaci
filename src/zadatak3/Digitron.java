@@ -17,15 +17,19 @@ import java.util.Scanner;
  */
 public class Digitron {
 
+	private static Scanner unos;
+
 	public static void main(String[] args) {
+
+		unos = new Scanner(System.in);
 
 		// korisnik unosi prvi broj i dodeljujemo varijabli prvi broj
 		System.out.println("Unesite prvi broj: ");
-		int prviBroj = unosBroja();
+		long prviBroj = unosBroja();
 
 		// korisnik unosi drugi broj i dodeljujemo varijabli drugi broj
 		System.out.println("Unesite drugi broj: ");
-		int drugiBroj = unosBroja();
+		long drugiBroj = unosBroja();
 
 		// korisnik unosi karakter kao opciju i dodeljujemo je varijabli
 		System.out.println("unesite s za sabiranje,ili o za oduzimanje,ili m za mnozenje,ili d za deljenje");
@@ -35,16 +39,20 @@ public class Digitron {
 		do {
 			switch (operacija) {
 			case "s":
-				sabiranje(prviBroj, drugiBroj);
+				System.out.println("Rezultat sabiranja je: " + sabiranje(prviBroj, drugiBroj));
 				break;
 			case "o":
-				oduzimanje(prviBroj, drugiBroj);
+				System.out.println("Rezultat oduzimanja je: " + oduzimanje(prviBroj, drugiBroj));
 				break;
 			case "m":
-				mnozenje(prviBroj, drugiBroj);
+				System.out.println("Rezultat mnozenja je: " + mnozenje(prviBroj, drugiBroj));
 				break;
 			case "d":
-				deljenje(prviBroj, drugiBroj);
+				if (drugiBroj == 0) {
+					System.out.println("Ne moze se deliti sa nulom");
+					break;
+				} else
+					System.out.println("Rezultat deljenja je: " + deljenje(prviBroj, drugiBroj));
 				break;
 			}
 			// ponovo dajemo mogucnost korisniku za izbor opcije da bi mogao da izadje iz
@@ -52,56 +60,53 @@ public class Digitron {
 			System.out.println("izaberite ponovo s, o, m ili d, za izlaz unesite neki drugi karakter");
 			operacija = unosKaraktera();
 		} while (operacija.matches("^[somd]$"));
+
+		System.out.println("Hvala sto ste koristili program");
+		unos.close();
 	}
 
 	// metod za unos broja od strane korisnika
-	public static int unosBroja() {
-		Scanner unos = new Scanner(System.in);
-		int brojKorisnika = 0;
-		while (!unos.hasNextInt()) {
+	private static long unosBroja() {
+		long unetiBroj = 0;
+		while (!unos.hasNextLong()) {
 			unos.next();
-			System.out.println("Unesite ceo broj...");
+			System.out.println("Morate da unesete broj, a ne karakter");
 		}
 		try {
-			brojKorisnika = unos.nextInt();
+			unetiBroj = unos.nextLong();
 		} catch (InputMismatchException e) {
 			System.out.println(e);
 		}
-		return brojKorisnika;
+		return unetiBroj;
 	}
 
 	// metod za unos operacije od strane korisnika
-	public static String unosKaraktera() {
-		Scanner unos = new Scanner(System.in);
+	private static String unosKaraktera() {
 		while (!unos.hasNext()) {
 			unos.next();
-			System.out.println("Unesite karakter...");
+			System.out.println("Unesite samo jedan karakter...");
 		}
-		String unosKorisnika = unos.next();
-		return unosKorisnika.substring(0, 1);
+		String unetiKarakter = unos.next();
+		return unetiKarakter;
 	}
 
 	// metod za sabiranje
-	public static void sabiranje(int prviBroj, int drugiBroj) {
-		System.out.println(prviBroj + drugiBroj);
+	private static long sabiranje(long prviBroj, long drugiBroj) {
+		return prviBroj + drugiBroj;
 	}
 
 	// metod za oduzimanje
-	public static void oduzimanje(int prviBroj, int drugiBroj) {
-		System.out.println(prviBroj - drugiBroj);
+	private static long oduzimanje(long prviBroj, long drugiBroj) {
+		return prviBroj - drugiBroj;
 	}
 
 	// metod za mnozenje
-	public static void mnozenje(int prviBroj, int drugiBroj) {
-		System.out.println(prviBroj * drugiBroj);
+	private static long mnozenje(long prviBroj, long drugiBroj) {
+		return prviBroj * drugiBroj;
 	}
 
 	// metod za deljenje
-	public static void deljenje(int prviBroj, int drugiBroj) {
-		try {
-			System.out.println(prviBroj / drugiBroj);
-		} catch (ArithmeticException e) {
-			System.out.println(e);
-		}
+	private static double deljenje(long prviBroj, long drugiBroj) {
+		return prviBroj / drugiBroj;
 	}
 }
