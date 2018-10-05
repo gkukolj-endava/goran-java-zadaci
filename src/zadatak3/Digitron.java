@@ -1,6 +1,5 @@
 package zadatak3;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -23,6 +22,8 @@ public class Digitron {
 
 		unos = new Scanner(System.in);
 
+		boolean nastaviIgru = true;
+
 		// korisnik unosi prvi broj i dodeljujemo varijabli prvi broj
 		System.out.println("Unesite prvi broj: ");
 		long prviBroj = unosBroja();
@@ -31,12 +32,13 @@ public class Digitron {
 		System.out.println("Unesite drugi broj: ");
 		long drugiBroj = unosBroja();
 
-		// korisnik unosi karakter kao opciju i dodeljujemo je varijabli
-		System.out.println("unesite s za sabiranje,ili o za oduzimanje,ili m za mnozenje,ili d za deljenje");
-		String operacija = unosKaraktera();
-
 		// petlja koja se ponavlja dok korisnik ne unese karakter razlicit od s,o,m,d
 		do {
+			// korisnik unosi karakter kao opciju i dodeljujemo je varijabli
+			System.out.println("unesite s za sabiranje,ili o za oduzimanje,ili m za mnozenje,ili d za deljenje "
+					+ "\n ili bilo sta drugo da izadjete iz programa");
+			String operacija = unosKaraktera();
+
 			switch (operacija) {
 			case "s":
 				System.out.println("Rezultat sabiranja je: " + sabiranje(prviBroj, drugiBroj));
@@ -54,40 +56,31 @@ public class Digitron {
 				} else
 					System.out.println("Rezultat deljenja je: " + deljenje(prviBroj, drugiBroj));
 				break;
+			default:
+				nastaviIgru = false;
+				break;
 			}
 			// ponovo dajemo mogucnost korisniku za izbor opcije da bi mogao da izadje iz
 			// petlje
-			System.out.println("izaberite ponovo s, o, m ili d, za izlaz unesite neki drugi karakter");
-			operacija = unosKaraktera();
-		} while (operacija.matches("^[somd]$"));
+
+		} while (nastaviIgru);
 
 		System.out.println("Hvala sto ste koristili program");
 		unos.close();
 	}
 
 	// metod za unos broja od strane korisnika
-	private static long unosBroja() {
-		long unetiBroj = 0;
-		while (!unos.hasNextLong()) {
+	private static int unosBroja() {
+		while (!unos.hasNextInt()) {
 			unos.next();
-			System.out.println("Morate da unesete broj, a ne karakter");
+			System.out.println("Morate da unesete ceo broj do maximum 2.000.000.000, i da nije karakter");
 		}
-		try {
-			unetiBroj = unos.nextLong();
-		} catch (InputMismatchException e) {
-			System.out.println(e);
-		}
-		return unetiBroj;
+		return unos.nextInt();
 	}
 
 	// metod za unos operacije od strane korisnika
 	private static String unosKaraktera() {
-		while (!unos.hasNext()) {
-			unos.next();
-			System.out.println("Unesite samo jedan karakter...");
-		}
-		String unetiKarakter = unos.next();
-		return unetiKarakter;
+		return unos.next();
 	}
 
 	// metod za sabiranje
@@ -107,6 +100,6 @@ public class Digitron {
 
 	// metod za deljenje
 	private static double deljenje(long prviBroj, long drugiBroj) {
-		return prviBroj / drugiBroj;
+		return (double) prviBroj / drugiBroj;
 	}
 }
