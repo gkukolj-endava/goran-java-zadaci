@@ -47,7 +47,6 @@ public class PogadjanjeSlucajnogBroja {
 
 			if (rezultatProverePogotka == 2) {
 				System.out.println("Promasili ste, probajte drugi broj...");
-				brojKorisnika = unosBroja();
 			} else if (rezultatProverePogotka == 1) {
 				System.out.println("Bili ste blizu! \n Zamisljeni broj je bio: " + slucajanBroj);
 				nijeBlizu = true;
@@ -55,7 +54,7 @@ public class PogadjanjeSlucajnogBroja {
 				System.out.println("Pogodili ste!");
 				nijeBlizu = true;
 			}
-			if (nijeBlizu == true) {
+			if (nijeBlizu) {
 				// provera da li korisnik zeli ponovo da igra
 				System.out.print("Unesite \'ne\' za exit,a bilo sta drugo da ponovo igrate");
 				String ponovoIgrati = unosOdgovora();
@@ -65,41 +64,35 @@ public class PogadjanjeSlucajnogBroja {
 			}
 		} while (!nijeBlizu);
 
-
-
 		unos.close();
 	}
 
 	// metod za unos broja od strane korisnika
 	private static int unosBroja() {
-
 		int a = 0;
-		boolean logic = true;
-		while (logic) {
-			try {
+		try {
+			while (true) {
 				a = Integer.parseInt(unos.next());
-
 				if (a < 1 || a > 50) {
 					System.out.println("Niste uneli ceo broj izmedju 1 i 50, pokusajte ponovo");
-					a = unos.nextInt();
+					continue;
 				} else
-					logic = false;
-			} catch (InputMismatchException ex) {
-				System.out.println("Niste uneli broj: " + ex.getMessage()
-						+ ", niste uneli ceo broj izmedju 1 i 50, pokusajte ponovo");
+					return a;
 			}
-			catch (NumberFormatException ex) {
-				System.out.println("Niste uneli broj: " + ex.getMessage()
-						+ ", niste uneli ceo broj izmedju 1 i 50, pokusajte ponovo");
-			}
+		} catch (InputMismatchException ex) {
+			System.out.println(
+					"Niste uneli broj: " + ex.getMessage() + ", niste uneli ceo broj izmedju 1 i 50, pokusajte ponovo");
+		} catch (NumberFormatException ex) {
+			System.out.println(
+					"Niste uneli broj: " + ex.getMessage() + ", niste uneli ceo broj izmedju 1 i 50, pokusajte ponovo");
 		}
 		return a;
 	}
 
 	// metod za unos odgovora od strane korisnika
 	private static String unosOdgovora() {
-			return unos.next();
-		}
+		return unos.next();
+	}
 
 	// proverava da li je broj pogodjen
 	private static int proveraPogotka(int unetBroj, int slucajanBroj) {
