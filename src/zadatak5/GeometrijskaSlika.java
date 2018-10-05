@@ -1,14 +1,27 @@
 package zadatak5;
 
+/**
+ * 
+ * @author Goran.Kukolj
+ *
+ */
 public abstract class GeometrijskaSlika {
 
 	protected GeometrijskaSlika() {
 		super();
 	}
 
-	// apstraktni metod za izracunavanje povrsine
+	/**
+	 * abstraktni metod za izracunavanje povrsine
+	 * 
+	 * @return double vraca povrsinu
+	 */
 	public abstract double izracunajPovrsinu();
 
-	// apstraktni metod za izracunavanje obima
+	/**
+	 * abstraktni metod za izracunavanje obima
+	 * 
+	 * @return double vraca obim
+	 */
 	public abstract double izracunajObim();
 }
