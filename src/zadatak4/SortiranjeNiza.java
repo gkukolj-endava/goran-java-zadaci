@@ -17,29 +17,45 @@ public class SortiranjeNiza {
 
 	public static void main(String[] args) {
 
-		// kreiramo random objekat da bi kreirali random brojeve
-		boolean sadrzi = false;
+		// inicijalizujemo niz i dodeljujemo mu velicinu pozivom metode za unos velicine
+		// od korisnika
+		int[] niz = new int[unosBrojaZaVelicinuNiza()];
 
-		// upit za korisnika da unese broj i cuvamo taj broj u varijabli
-		System.out.println("Unesite broj za velicinu niza: ");
-		int velicinaNiza = Math.abs(unosBroja());
-
-		// inicijalizujemo niz
-		int[] niz = new int[velicinaNiza];
-
-		// kroz petlju dodajemo random clanove u niz
+		// kroz petlju dodajemo clanove u niz
 		for (int brojac = 0; brojac < niz.length; brojac++) {
-			System.out.println("Unesite broj niza: ");
+			System.out.println("Unesite " + (brojac + 1) + " broj niza: ");
 			niz[brojac] = unosBroja();
 		}
 
 		// sortiramo niz
 		Arrays.sort(niz);
 
+		// pozivamo metodu za proveru broja u nizu
+		proveraBrojaUNizu(niz);
+
+		// pozivamo metodu da nam ispise prvih 5 clanova niza
+		ispisiNiz(niz);
+
+		// zatvaramo skener
+		unos.close();
+	}
+
+	// metod za unos broja od strane korisnika
+	private static int unosBroja() {
+		while (!unos.hasNextInt()) {
+			unos.next();
+			System.out.println("Unesite ceo broj, a ne karakter ili decimalni broj");
+		}
+		return unos.nextInt();
+	}
+
+	// metoda za proveru broja u nizu
+	private static void proveraBrojaUNizu(int[] niz) {
 		// dodeljujemo broj koji korisnik unese varijabli za proveru
 		System.out.println("Unesite broj koji hocete da proverite da li se nalazi u nizu");
 		int brojZaProveru = unosBroja();
 
+		boolean sadrzi = false;
 		// proveravamo da li se broj nalazi u nizu
 		for (int brojac : niz) {
 			if (brojac == brojZaProveru)
@@ -51,29 +67,27 @@ public class SortiranjeNiza {
 			System.out.println("Niz sadrzi broj " + brojZaProveru);
 		} else
 			System.out.println("Niz ne sadrzi broj " + brojZaProveru);
-
-		// ispisujemo prvih 5 clanova niza, ako je niz manji onda samo koliko ima
-		// clanova
-		if (velicinaNiza > 4) {
-			for (int brojac = 0; brojac < 5; brojac++) {
-				System.out.print(niz[brojac] + " ");
-			}
-		} else
-			for (int brojac = 0; brojac < niz.length; brojac++) {
-				System.out.print(niz[brojac] + " ");
-			}
-		unos.close();
 	}
 
-	// metod za unos broja od strane korisnika
-	private static int unosBroja() {
-		while (!unos.hasNextInt()) {
-			unos.next();
-			System.out.println("Unesite ceo broj, a ne karakter ili decimalni broj");
+	// metoda za ispis prvih 5 clanova niza
+	private static void ispisiNiz(int[] niz) {
+		for (int brojac = 0; brojac < 5; brojac++) {
+			System.out.print(niz[brojac] + " ");
 		}
-		int unosKorisnika = unos.nextInt();
-
-		return unosKorisnika;
 	}
 
+	// upit za korisnika da unese broj za velicinu niza i vracamo taj broj
+	private static int unosBrojaZaVelicinuNiza() {
+		boolean dobarUnos = false;
+		int velicinaNiza = 0;
+		while (!dobarUnos) {
+			System.out.println("Unesite broj za velicinu niza, da nije manji od 5: ");
+			velicinaNiza = unosBroja();
+			if (velicinaNiza < 5) {
+				continue;
+			} else
+				dobarUnos = true;
+		}
+		return velicinaNiza;
+	}
 }
