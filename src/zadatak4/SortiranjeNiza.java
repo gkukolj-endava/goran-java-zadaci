@@ -23,7 +23,7 @@ public class SortiranjeNiza {
 
 		// kroz petlju dodajemo clanove u niz
 		for (int brojac = 0; brojac < niz.length; brojac++) {
-			System.out.println("Unesite " + (brojac + 1) + " broj niza: ");
+			System.out.println("Unesite " + (brojac + 1) + ". broj niza: ");
 			niz[brojac] = unosBroja();
 		}
 
@@ -71,6 +71,7 @@ public class SortiranjeNiza {
 
 	// metoda za ispis prvih 5 clanova niza
 	private static void ispisiNiz(int[] niz) {
+		System.out.print("Prvih pet clanova niza su: ");
 		for (int brojac = 0; brojac < 5; brojac++) {
 			System.out.print(niz[brojac] + " ");
 		}
@@ -83,10 +84,9 @@ public class SortiranjeNiza {
 		while (!dobarUnos) {
 			System.out.println("Unesite broj za velicinu niza, da nije manji od 5: ");
 			velicinaNiza = unosBroja();
-			if (velicinaNiza < 5) {
-				continue;
-			} else
+			if (velicinaNiza >= 5) {
 				dobarUnos = true;
+			}
 		}
 		return velicinaNiza;
 	}
