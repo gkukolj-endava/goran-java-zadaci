@@ -1,6 +1,5 @@
 package zadatak2;
 
-import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -23,15 +22,15 @@ import java.util.Scanner;
 public class PogadjanjeSlucajnogBroja {
 
 	private static Scanner unos;
+	private static final String LOS_UNOS = "Niste uneli ceo broj izmedju 1 i 50, pokusajte ponovo";
 
 	public static void main(String[] args) {
 
 		// kreiramo random objekat da dobijemo random zamisljeni broj
-		Random random = new Random();
 		System.out.println("Dobrodosli u igru pogadjanja");
 		unos = new Scanner(System.in);
-		// kreiramo slucajan broj izmedju 1 i 50
-		int slucajanBroj = random.nextInt(50) + 1;
+		// pozivamo metodu za generisanje random broja i dodeljujemo varijabli
+		int slucajanBroj = generisanjeRandomBroja();
 		boolean nijeBlizu = false;
 
 		// petlja same igre, ponavlja se dok ne pogodi broj ili bude blizu zamisljenog
@@ -60,6 +59,9 @@ public class PogadjanjeSlucajnogBroja {
 				String ponovoIgrati = unosOdgovora();
 				if (ponovoIgrati.equalsIgnoreCase("ne")) {
 					System.out.println("Hvala sto ste igrali nasu igru");
+				} else {
+					slucajanBroj = generisanjeRandomBroja();
+					nijeBlizu = false;
 				}
 			}
 		} while (!nijeBlizu);
@@ -67,24 +69,20 @@ public class PogadjanjeSlucajnogBroja {
 		unos.close();
 	}
 
-	// metod za unos broja od strane korisnika
 	private static int unosBroja() {
+		// metod za unos broja od strane korisnika
 		int a = 0;
-		try {
-			while (true) {
-				a = Integer.parseInt(unos.next());
-				if (a < 1 || a > 50) {
-					System.out.println("Niste uneli ceo broj izmedju 1 i 50, pokusajte ponovo");
-					continue;
-				} else
-					return a;
+		boolean logic = true;
+		while (logic) {
+			if (!unos.hasNextInt()) {
+				unos.next();
+				System.out.println(LOS_UNOS);
 			}
-		} catch (InputMismatchException ex) {
-			System.out.println(
-					"Niste uneli broj: " + ex.getMessage() + ", niste uneli ceo broj izmedju 1 i 50, pokusajte ponovo");
-		} catch (NumberFormatException ex) {
-			System.out.println(
-					"Niste uneli broj: " + ex.getMessage() + ", niste uneli ceo broj izmedju 1 i 50, pokusajte ponovo");
+			a = unos.nextInt();
+			if (a < 0 || a > 50) {
+				System.out.println(LOS_UNOS);
+			} else
+				logic = false;
 		}
 		return a;
 	}
@@ -103,5 +101,10 @@ public class PogadjanjeSlucajnogBroja {
 			return 1;
 		} else
 			return 2;
+	}
+
+	private static int generisanjeRandomBroja() {
+		Random random = new Random();
+		return random.nextInt(50) + 1;
 	}
 }
