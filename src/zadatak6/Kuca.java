@@ -9,19 +9,7 @@ public class Kuca extends Nekretnina {
 
 	// kreiramo varijablu
 	private double povrsinaOkucnice;
-
-	protected Kuca() {
-		super();
-	}
-
-	protected Kuca(double povrsinaOkucnice) {
-		super();
-		// provera da li je uneta povrsina veca od 0, ako nije izbacuje izuzetak
-		if (povrsinaOkucnice > 0) {
-			this.povrsinaOkucnice = povrsinaOkucnice;
-		} else
-			throw new IllegalArgumentException("Pogresan unos povrsine okucnice, unesite broj veci od nule");
-	}
+	private static final String POGRESAN_UNOS_POVRSINE = "Pogresan unos povrsine okucnice, unesite broj veci od nule";
 
 	protected Kuca(String adresa, int zona, double kvadratura, Vlasnik vlasnik, double povrsinaOkucnice) {
 		super(adresa, zona, kvadratura, vlasnik);
@@ -29,7 +17,7 @@ public class Kuca extends Nekretnina {
 		if (povrsinaOkucnice > 0) {
 			this.povrsinaOkucnice = povrsinaOkucnice;
 		} else
-			throw new IllegalArgumentException("Pogresan unos povrsine okucnice, unesite broj veci od nule");
+			throw new IllegalArgumentException(POGRESAN_UNOS_POVRSINE);
 	}
 
 	public double getPovrsinaOkucnice() {
@@ -41,7 +29,7 @@ public class Kuca extends Nekretnina {
 		if (povrsinaOkucnice > 0) {
 			this.povrsinaOkucnice = povrsinaOkucnice;
 		} else
-			throw new IllegalArgumentException("Pogresan unos povrsine okucnice, unesite broj veci od nule");
+			throw new IllegalArgumentException(POGRESAN_UNOS_POVRSINE);
 	}
 
 	@Override

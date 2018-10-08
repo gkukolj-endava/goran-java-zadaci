@@ -25,13 +25,13 @@ public class Main {
 
 		try {
 			// kreiramo vlasnike
-			Vlasnik vlasnik1 = new Vlasnik("Jan", "Petar", "1234561234561", "123450");
-			Vlasnik vlasnik2 = new Vlasnik("Mia", "Minic", "1200044234561", "166890");
-			Vlasnik vlasnik3 = new Vlasnik("Sasa", "Lukic", "4511132345651", "794450");
-			Vlasnik vlasnik4 = new Vlasnik("Vlada", "Ilic", "9994561234561", "400450");
+			Vlasnik vlasnik1 = new Vlasnik("Jan", "Petar", "1234561234561", "123456770");
+			Vlasnik vlasnik2 = new Vlasnik("Mia", "Minic", "1200044234561", "166254890");
+			Vlasnik vlasnik3 = new Vlasnik("Sasa", "Lukic", "4532227405651", "794977450");
+			Vlasnik vlasnik4 = new Vlasnik("Vlada", "Ilic", "9994521734761", "400141450");
 
 			// kreiramo nekretnine
-			Nekretnina kuca1 = new Kuca("Vareska 35", 1, 100, vlasnik1, 1);
+			Nekretnina kuca1 = new Kuca("Vareska 35", 4, 100, vlasnik1, 1);
 			Nekretnina kuca2 = new Kuca("Somborska 2", 3, 250, vlasnik2, 536);
 			Nekretnina stan1 = new Stan("Beogradska 26", 1, 69, vlasnik3, 15, 22);
 			Nekretnina stan2 = new Stan("Zicka 221", 4, 53, vlasnik4, 4, 18);

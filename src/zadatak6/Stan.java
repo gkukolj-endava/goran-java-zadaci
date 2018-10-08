@@ -10,24 +10,7 @@ public class Stan extends Nekretnina {
 	// kreiramo varijable
 	private double povrsinaPodruma;
 	private double povrsinaTerase;
-
-	protected Stan() {
-		super();
-	}
-
-	protected Stan(double povrsinaPodruma, double povrsinaTerase) {
-		super();
-		// provera da li je uneta povrsina veca od 0, ako nije izbacuje izuzetak
-		if (povrsinaPodruma > 0) {
-			this.povrsinaPodruma = povrsinaPodruma;
-		} else
-			throw new IllegalArgumentException("Pogresan unos povrsine podruma, unesite broj veci od nule");
-		// provera da li je uneta povrsina veca od 0, ako nije izbacuje izuzetak
-		if (povrsinaTerase > 0) {
-			this.povrsinaTerase = povrsinaTerase;
-		} else
-			throw new IllegalArgumentException("Pogresan unos povrsine podruma, unesite broj veci od nule");
-	}
+	private static final String LOS_UNOS_POVRSINE = "Pogresan unos povrsine , unesite broj veci od nule";
 
 	protected Stan(String adresa, int zona, double kvadratura, Vlasnik vlasnik, double povrsinaPodruma,
 			double povrsinaTerase) {
@@ -36,12 +19,12 @@ public class Stan extends Nekretnina {
 		if (povrsinaPodruma > 0) {
 			this.povrsinaPodruma = povrsinaPodruma;
 		} else
-			throw new IllegalArgumentException("Pogresan unos povrsine podruma, unesite broj veci od nule");
+			throw new IllegalArgumentException(LOS_UNOS_POVRSINE);
 		// provera da li je uneta povrsina veca od 0, ako nije izbacuje izuzetak
 		if (povrsinaTerase > 0) {
 			this.povrsinaTerase = povrsinaTerase;
 		} else
-			throw new IllegalArgumentException("Pogresan unos povrsine podruma, unesite broj veci od nule");
+			throw new IllegalArgumentException(LOS_UNOS_POVRSINE);
 	}
 
 	// geteri i seteri
@@ -55,7 +38,7 @@ public class Stan extends Nekretnina {
 		if (povrsinaPodruma > 0) {
 			this.povrsinaPodruma = povrsinaPodruma;
 		} else
-			throw new IllegalArgumentException("Pogresan unos povrsine podruma, unesite broj veci od nule");
+			throw new IllegalArgumentException(LOS_UNOS_POVRSINE);
 	}
 
 	public double getPovrsinaTerase() {
@@ -67,7 +50,7 @@ public class Stan extends Nekretnina {
 		if (povrsinaTerase > 0) {
 			this.povrsinaTerase = povrsinaTerase;
 		} else
-			throw new IllegalArgumentException("Pogresan unos povrsine podruma, unesite broj veci od nule");
+			throw new IllegalArgumentException(LOS_UNOS_POVRSINE);
 	}
 
 	@Override

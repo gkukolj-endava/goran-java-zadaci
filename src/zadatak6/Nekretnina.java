@@ -12,10 +12,8 @@ public abstract class Nekretnina {
 	private int zona;
 	private double kvadratura;
 	private Vlasnik vlasnik;
-
-	protected Nekretnina() {
-		super();
-	}
+	private static final String LOS_UNOS_KVADRATURE = "Pogresan unos kvadrature, unesite broj veci od nule";
+	private static final String LOS_UNOS_ZONE = "Pogresan unos zone, unesite ceo broj od 1-4";
 
 	protected Nekretnina(String adresa, int zona, double kvadratura, Vlasnik vlasnik) {
 		super();
@@ -25,12 +23,12 @@ public abstract class Nekretnina {
 		if (kvadratura > 0) {
 			this.kvadratura = kvadratura;
 		} else
-			throw new IllegalArgumentException("Pogresan unos kvadrature, unesite broj veci od nule");
+			throw new IllegalArgumentException(LOS_UNOS_KVADRATURE);
 		// provera da li je uneta zona u rasponu od 1 do 4
 		if (zona > 0 && zona < 5) {
 			this.zona = zona;
 		} else
-			throw new IllegalArgumentException("Pogresan unos zone, unesite ceo broj od 1-4");
+			throw new IllegalArgumentException(LOS_UNOS_ZONE);
 	}
 
 	// geteri i seteri
@@ -52,7 +50,7 @@ public abstract class Nekretnina {
 		if (zona > 0 && zona < 5) {
 			this.zona = zona;
 		} else
-			throw new IllegalArgumentException("Pogresan unos zone, unesite ceo broj od 1-4");
+			throw new IllegalArgumentException(LOS_UNOS_ZONE);
 	}
 
 	public double getKvadratura() {
@@ -64,7 +62,7 @@ public abstract class Nekretnina {
 		if (kvadratura > 0) {
 			this.kvadratura = kvadratura;
 		} else
-			throw new IllegalArgumentException("Pogresan unos kvadrature, unesite broj veci od nule");
+			throw new IllegalArgumentException(LOS_UNOS_KVADRATURE);
 	}
 
 	public Vlasnik getVlasnik() {
