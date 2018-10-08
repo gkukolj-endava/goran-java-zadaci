@@ -43,7 +43,7 @@ public class Pravougaonik extends Kvadrat {
 
 	@Override
 	public double izracunajObim() {
-		return 2 * visina + 2 * sirina;
+		return 2 * (visina + sirina);
 	}
 
 	@Override

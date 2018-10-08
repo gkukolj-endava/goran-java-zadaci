@@ -24,7 +24,7 @@ public class Main {
 		GeometrijskaSlika kvadrat = new Kvadrat(5);
 		GeometrijskaSlika trougao = new Trougao(5);
 		GeometrijskaSlika pravougaonik = new Pravougaonik(5, 4);
-		GeometrijskaSlika nejednakostranicniTrougao = new NejednakostranicniTrougao(4, 7, 9);
+		GeometrijskaSlika nejednakostranicniTrougao = new NejednakostranicniTrougao(4, 7, 5);
 		GeometrijskaSlika elipsa = new Elipsa(4, 9);
 
 		// ispisujemo povrsinu i obim za sve instance

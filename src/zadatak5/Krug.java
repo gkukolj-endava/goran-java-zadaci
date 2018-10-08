@@ -8,32 +8,32 @@ package zadatak5;
 public class Krug extends GeometrijskaSlika {
 
 	// kreiramo varijablu poluprecnik
-	private double poluprecnik;
+	private double poluprecnikKruga;
 
 	protected Krug() {
 		super();
 	}
 
-	protected Krug(double poluprecnik) {
-		this.poluprecnik = poluprecnik;
+	protected Krug(double poluprecnikKruga) {
+		this.poluprecnikKruga = poluprecnikKruga;
 	}
 
-	public double getPoluprecnik() {
-		return poluprecnik;
+	public double getPoluprecnikKruga() {
+		return poluprecnikKruga;
 	}
 
-	public void setPoluprecnik(double poluprecnik) {
-		this.poluprecnik = poluprecnik;
+	public void setPoluprecnikKruga(double poluprecnikKruga) {
+		this.poluprecnikKruga = poluprecnikKruga;
 	}
 
 	@Override
 	public double izracunajPovrsinu() {
-		return poluprecnik * poluprecnik * Math.PI;
+		return Math.pow(poluprecnikKruga, 2) * Math.PI;
 	}
 
 	@Override
 	public double izracunajObim() {
-		return 2 * poluprecnik * Math.PI;
+		return poluprecnikKruga * 2 * Math.PI;
 	}
 
 	@Override

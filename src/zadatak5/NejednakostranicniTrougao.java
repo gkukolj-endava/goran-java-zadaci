@@ -22,11 +22,7 @@ public class NejednakostranicniTrougao extends Trougao {
 
 	protected NejednakostranicniTrougao(double stranicaA, double stranicaB, double stranicaC) {
 		super();
-		// provera da li moze da se konstruise trougao
-		if (!((stranicaA + stranicaB) > stranicaC && (stranicaA + stranicaC) > stranicaB && stranicaC > stranicaA)) {
-			System.out.println("Zbir bilo koje dve stranice mora biti veci od preostale stranice");
-		} else
-			this.stranicaA = stranicaA;
+		this.stranicaA = stranicaA;
 		this.stranicaB = stranicaB;
 		this.stranicaC = stranicaC;
 
@@ -58,10 +54,8 @@ public class NejednakostranicniTrougao extends Trougao {
 
 	@Override
 	public double izracunajPovrsinu() {
-		double poluobim = (stranicaA + stranicaB + stranicaC) / 2;
-		double visinaA = (2 * Math.sqrt(poluobim) * (poluobim - stranicaA) * (poluobim - stranicaB)
-				* (poluobim - stranicaC)) / 2;
-		return ((stranicaA * visinaA) / 2);
+		double poluobim = izracunajObim() / 2;
+		return Math.sqrt(poluobim * (poluobim - stranicaA) * (poluobim - stranicaB) * (poluobim - stranicaC));
 	}
 
 	@Override
@@ -71,9 +65,19 @@ public class NejednakostranicniTrougao extends Trougao {
 
 	@Override
 	public String toString() {
-		return new StringBuilder("\nPovrsina nejednakostranicnog trougla je ").append(izracunajPovrsinu())
-				.append(",\n a obim nejednakostranicnog trougla je ").append(izracunajObim()).toString();
-
+		if (jelMoguceKonstruisatiTrougao()) {
+			return new StringBuilder("\nPovrsina nejednakostranicnog trougla je ").append(izracunajPovrsinu())
+					.append(",\n a obim nejednakostranicnog trougla je ").append(izracunajObim()).toString();
+		} else
+			return "\nNe moze se konstruisati trougao sa tim duzinama stranica,\n"
+					+ " zbir bilo koje dve stranice ne sme da bude manji od trece stranice";
 	}
 
+	private boolean jelMoguceKonstruisatiTrougao() {
+		// provera da li moze da se konstruise trougao
+		if (!((stranicaA + stranicaB) > stranicaC && (stranicaA + stranicaC) > stranicaB && stranicaC > stranicaA)) {
+			return false;
+		} else
+			return true;
+	}
 }

@@ -29,7 +29,7 @@ public class Trougao extends GeometrijskaSlika {
 
 	@Override
 	public double izracunajObim() {
-		return 3 * stranica;
+		return stranica * 3;
 	}
 
 	@Override

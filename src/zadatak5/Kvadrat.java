@@ -34,7 +34,7 @@ public class Kvadrat extends GeometrijskaSlika {
 
 	@Override
 	public double izracunajObim() {
-		return 4 * stranica;
+		return stranica * 4;
 	}
 
 	@Override
