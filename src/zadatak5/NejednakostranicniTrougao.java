@@ -75,9 +75,6 @@ public class NejednakostranicniTrougao extends Trougao {
 
 	private boolean jelMoguceKonstruisatiTrougao() {
 		// provera da li moze da se konstruise trougao
-		if (!((stranicaA + stranicaB) > stranicaC && (stranicaA + stranicaC) > stranicaB && stranicaC > stranicaA)) {
-			return false;
-		} else
-			return true;
+		return ((stranicaA + stranicaB) > stranicaC && (stranicaA + stranicaC) > stranicaB && stranicaC > stranicaA);
 	}
 }
