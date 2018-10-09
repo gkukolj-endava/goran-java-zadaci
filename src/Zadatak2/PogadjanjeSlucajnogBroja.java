@@ -22,7 +22,7 @@ import java.util.Scanner;
 public class PogadjanjeSlucajnogBroja {
 
 	private static Scanner unos;
-	private static final String LOS_UNOS = "Niste uneli ceo broj izmedju 1 i 50, pokusajte ponovo";
+	private static final String LOS_UNOS = "Niste uneli dobar broj, ";
 
 	public static void main(String[] args) {
 
@@ -38,7 +38,7 @@ public class PogadjanjeSlucajnogBroja {
 		do {
 
 			// korisnik unosi broj i dodeljujemo taj broj varijabli
-			System.out.println("Unesite broj od 1 - 50");
+
 			int brojKorisnika = unosBroja();
 
 			// varijabli dodeljujemo rezultat metode
@@ -72,18 +72,14 @@ public class PogadjanjeSlucajnogBroja {
 	private static int unosBroja() {
 		// metod za unos broja od strane korisnika
 		int a = 0;
-		boolean logic = true;
-		while (logic) {
+		do {
+			System.out.println("Unesite ceo broj od 1 - 50");
 			if (!unos.hasNextInt()) {
 				unos.next();
 				System.out.println(LOS_UNOS);
-			}
-			a = unos.nextInt();
-			if (a < 0 || a > 50) {
-				System.out.println(LOS_UNOS);
 			} else
-				logic = false;
-		}
+				a = unos.nextInt();
+		} while (!(a > 0 && a < 50));
 		return a;
 	}
 
