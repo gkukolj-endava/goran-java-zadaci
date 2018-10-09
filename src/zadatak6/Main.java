@@ -25,9 +25,9 @@ public class Main {
 
 		try {
 			// kreiramo vlasnike
-			Vlasnik vlasnik1 = new Vlasnik("Jan", "Petar", "1234561234561", "123456770");
+			Vlasnik vlasnik1 = new Vlasnik("Jan", "Petar o' yool", "1234561234561", "123456770");
 			Vlasnik vlasnik2 = new Vlasnik("Mia", "Minic", "1200044234561", "166254890");
-			Vlasnik vlasnik3 = new Vlasnik("Sava", "Lu+ic", "4532227405651", "794979450");
+			Vlasnik vlasnik3 = new Vlasnik("Sava", "Petar o' yool", "4532227405651", "794979450");
 			Vlasnik vlasnik4 = new Vlasnik("Vlada", "Ilic", "9994521'34761", "400141450");
 
 			// kreiramo nekretnine

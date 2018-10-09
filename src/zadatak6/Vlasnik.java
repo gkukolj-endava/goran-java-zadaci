@@ -16,6 +16,7 @@ public class Vlasnik {
 	private static final String LOS_UNOS_IMENA = "Ime ili prezime mora da sadrzi samo slova";
 	private static final String REG_EXP_1 = "[0-9]+";
 	private static final String REG_EXP_2 = "^[\\-'\\s]?[a-zA-Z]+";
+	private static final String REG_EXP_3 = "^([a-zA-Z ']*)+$";
 
 	public Vlasnik(String ime, String prezime, String jmbg, String brojLicneKarte) {
 		super();
@@ -23,7 +24,7 @@ public class Vlasnik {
 			this.ime = ime;
 		} else
 			this.ime = LOS_UNOS_IMENA;
-		if (prezime.matches(REG_EXP_2)) {
+		if (prezime.matches(REG_EXP_3)) {
 			this.prezime = prezime;
 		} else
 			this.prezime = LOS_UNOS_IMENA;
@@ -58,7 +59,7 @@ public class Vlasnik {
 	}
 
 	public void setPrezime(String prezime) {
-		if (prezime.matches(REG_EXP_2)) {
+		if (prezime.matches(REG_EXP_3)) {
 			this.prezime = prezime;
 		} else
 			this.prezime = LOS_UNOS_IMENA;
@@ -91,7 +92,7 @@ public class Vlasnik {
 
 	@Override
 	public String toString() {
-		return new StringBuilder(" ").append(ime).append(" ").append(prezime).append(",\n jmbg = ").append(jmbg)
+		return new StringBuilder(" ").append(ime).append(", ").append(prezime).append(",\n jmbg = ").append(jmbg)
 				.append(",\n broj licne karte = ").append(brojLicneKarte).toString();
 	}
 
