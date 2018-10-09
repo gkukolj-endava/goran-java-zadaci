@@ -15,30 +15,30 @@ public class Vlasnik {
 	private static final String LOS_BROJ_LICNE_KARTE = "Licna karta mora da sadrzi 9 cifara, i samo brojeve";
 	private static final String LOS_UNOS_IMENA = "Ime ili prezime mora da sadrzi samo slova";
 	private static final String REG_EXP_1 = "[0-9]+";
-	private static final String REG_EXP_2 = "[a-zA-Z]+";
+	private static final String REG_EXP_2 = "^[\\-'\\s]?[a-zA-Z]+";
 
 	public Vlasnik(String ime, String prezime, String jmbg, String brojLicneKarte) {
 		super();
 		if (ime.matches(REG_EXP_2)) {
 			this.ime = ime;
 		} else
-			throw new IllegalArgumentException(LOS_UNOS_IMENA);
+			this.ime = LOS_UNOS_IMENA;
 		if (prezime.matches(REG_EXP_2)) {
 			this.prezime = prezime;
 		} else
-			throw new IllegalArgumentException(LOS_UNOS_IMENA);
+			this.prezime = LOS_UNOS_IMENA;
 		// proverava da li je unet ispravan broj licne karte, da ima 9 brojeva i da nisu
 		// karakteri
 		if (brojLicneKarte.matches(REG_EXP_1) && brojLicneKarte.length() == 9) {
 			this.brojLicneKarte = brojLicneKarte;
 		} else
-			throw new IllegalArgumentException(LOS_BROJ_LICNE_KARTE);
+			this.brojLicneKarte = LOS_BROJ_LICNE_KARTE;
 
 		// proverava da li je unet ispravan jmbg, da ima 13 brojeva i da nisu karakteri
 		if (jmbg.matches(REG_EXP_1) && jmbg.length() == 13) {
 			this.jmbg = jmbg;
 		} else
-			throw new IllegalArgumentException(LOS_JMBG);
+			this.jmbg = LOS_JMBG;
 
 	}
 
@@ -50,7 +50,7 @@ public class Vlasnik {
 		if (ime.matches(REG_EXP_2)) {
 			this.ime = ime;
 		} else
-			throw new IllegalArgumentException(LOS_UNOS_IMENA);
+			this.ime = LOS_UNOS_IMENA;
 	}
 
 	public String getPrezime() {
@@ -61,7 +61,7 @@ public class Vlasnik {
 		if (prezime.matches(REG_EXP_2)) {
 			this.prezime = prezime;
 		} else
-			throw new IllegalArgumentException(LOS_UNOS_IMENA);
+			this.prezime = LOS_UNOS_IMENA;
 	}
 
 	public String getJmbg() {
@@ -73,7 +73,7 @@ public class Vlasnik {
 		if (jmbg.matches(REG_EXP_1) && jmbg.length() == 13) {
 			this.jmbg = jmbg;
 		} else
-			throw new IllegalArgumentException(LOS_JMBG);
+			this.jmbg = LOS_JMBG;
 	}
 
 	public String getBrojLicneKarte() {
@@ -86,13 +86,13 @@ public class Vlasnik {
 		if (brojLicneKarte.matches(REG_EXP_1) && brojLicneKarte.length() == 9) {
 			this.brojLicneKarte = brojLicneKarte;
 		} else
-			throw new IllegalArgumentException(LOS_BROJ_LICNE_KARTE);
+			this.brojLicneKarte = LOS_BROJ_LICNE_KARTE;
 	}
 
 	@Override
 	public String toString() {
 		return new StringBuilder(" ").append(ime).append(" ").append(prezime).append(",\n jmbg = ").append(jmbg)
-				.append(", broj licne karte = ").append(brojLicneKarte).toString();
+				.append(",\n broj licne karte = ").append(brojLicneKarte).toString();
 	}
 
 }

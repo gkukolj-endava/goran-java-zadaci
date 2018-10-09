@@ -12,7 +12,7 @@ public class Stan extends Nekretnina {
 	private double povrsinaTerase;
 	private static final String LOS_UNOS_POVRSINE = "Pogresan unos povrsine , unesite broj veci od nule";
 
-	protected Stan(String adresa, int zona, double kvadratura, Vlasnik vlasnik, double povrsinaPodruma,
+	protected Stan(String adresa, String zona, double kvadratura, Vlasnik vlasnik, double povrsinaPodruma,
 			double povrsinaTerase) {
 		super(adresa, zona, kvadratura, vlasnik);
 		// provera da li je uneta povrsina veca od 0, ako nije izbacuje izuzetak
@@ -55,13 +55,13 @@ public class Stan extends Nekretnina {
 
 	@Override
 	public double izracunajCenuNekretnine() {
-		return (getKvadratura() + (getPovrsinaPodruma() + getPovrsinaTerase() * 33 / 100)) * izracunajCenuKvadrata();
+		return (getKvadratura() + ((getPovrsinaPodruma() + getPovrsinaTerase()) * 33 / 100)) * izracunajCenuKvadrata();
 	}
 
 	@Override
 	public String toString() {
 		return new StringBuilder(super.toString()).append(",\n i povrsinom podruma=").append(povrsinaPodruma)
-				.append(", povrsinom terase=").append(povrsinaTerase).append(",\n je stan koji kosta ")
+				.append(",\n povrsinom terase=").append(povrsinaTerase).append(",\n je stan koji kosta ")
 				.append(izracunajCenuNekretnine()).append("\n\n  ***********************\n").toString();
 	}
 

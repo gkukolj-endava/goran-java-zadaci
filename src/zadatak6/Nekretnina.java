@@ -9,13 +9,13 @@ public abstract class Nekretnina {
 
 	// kreiramo varijable
 	private String adresa;
-	private int zona;
+	private String zona;
 	private double kvadratura;
 	private Vlasnik vlasnik;
 	private static final String LOS_UNOS_KVADRATURE = "Pogresan unos kvadrature, unesite broj veci od nule";
 	private static final String LOS_UNOS_ZONE = "Pogresan unos zone, unesite ceo broj od 1-4";
 
-	protected Nekretnina(String adresa, int zona, double kvadratura, Vlasnik vlasnik) {
+	protected Nekretnina(String adresa, String zona, double kvadratura, Vlasnik vlasnik) {
 		super();
 		this.adresa = adresa;
 		this.vlasnik = vlasnik;
@@ -25,10 +25,16 @@ public abstract class Nekretnina {
 		} else
 			throw new IllegalArgumentException(LOS_UNOS_KVADRATURE);
 		// provera da li je uneta zona u rasponu od 1 do 4
-		if (zona > 0 && zona < 5) {
+		switch (zona) {
+		case "1":
+		case "2":
+		case "3":
+		case "4":
 			this.zona = zona;
-		} else
-			throw new IllegalArgumentException(LOS_UNOS_ZONE);
+			break;
+		default:
+			this.zona = LOS_UNOS_ZONE;
+		}
 	}
 
 	// geteri i seteri
@@ -41,16 +47,22 @@ public abstract class Nekretnina {
 		this.adresa = adresa;
 	}
 
-	public int getZona() {
+	public String getZona() {
 		return zona;
 	}
 
-	public void setZona(int zona) {
+	public void setZona(String zona) {
 		// provera da li je uneta zona u rasponu od 1 do 4
-		if (zona > 0 && zona < 5) {
+		switch (zona) {
+		case "1":
+		case "2":
+		case "3":
+		case "4":
 			this.zona = zona;
-		} else
-			throw new IllegalArgumentException(LOS_UNOS_ZONE);
+			break;
+		default:
+			this.zona = LOS_UNOS_ZONE;
+		}
 	}
 
 	public double getKvadratura() {
@@ -81,11 +93,11 @@ public abstract class Nekretnina {
 	 * @return int
 	 */
 	public int izracunajCenuKvadrata() {
-		if (this.zona == 1) {
+		if (this.zona.equals("1")) {
 			return 3000;
-		} else if (this.zona == 2) {
+		} else if (this.zona.equals("2")) {
 			return 2000;
-		} else if (this.zona == 3) {
+		} else if (this.zona.equals("3")) {
 			return 1000;
 		} else
 			return 500;
@@ -93,8 +105,8 @@ public abstract class Nekretnina {
 
 	@Override
 	public String toString() {
-		return new StringBuilder("Nekretnina na adresi = ").append(adresa).append(", u zoni = ").append(zona)
-				.append(", kvadrature = ").append(kvadratura).append(",\n sa vlasnikom ").append(vlasnik).toString();
+		return new StringBuilder("Nekretnina na adresi = ").append(adresa).append(",\n u zoni = ").append(zona)
+				.append(",\n kvadrature = ").append(kvadratura).append(",\n sa vlasnikom ").append(vlasnik).toString();
 	}
 
 }

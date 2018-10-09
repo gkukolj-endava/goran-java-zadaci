@@ -27,14 +27,14 @@ public class Main {
 			// kreiramo vlasnike
 			Vlasnik vlasnik1 = new Vlasnik("Jan", "Petar", "1234561234561", "123456770");
 			Vlasnik vlasnik2 = new Vlasnik("Mia", "Minic", "1200044234561", "166254890");
-			Vlasnik vlasnik3 = new Vlasnik("Sasa", "Lukic", "4532227405651", "794977450");
-			Vlasnik vlasnik4 = new Vlasnik("Vlada", "Ilic", "9994521734761", "400141450");
+			Vlasnik vlasnik3 = new Vlasnik("Sava", "Lu+ic", "4532227405651", "794979450");
+			Vlasnik vlasnik4 = new Vlasnik("Vlada", "Ilic", "9994521'34761", "400141450");
 
 			// kreiramo nekretnine
-			Nekretnina kuca1 = new Kuca("Vareska 35", 4, 100, vlasnik1, 1);
-			Nekretnina kuca2 = new Kuca("Somborska 2", 3, 250, vlasnik2, 536);
-			Nekretnina stan1 = new Stan("Beogradska 26", 1, 69, vlasnik3, 15, 22);
-			Nekretnina stan2 = new Stan("Zicka 221", 4, 53, vlasnik4, 4, 18);
+			Nekretnina kuca1 = new Kuca("Vareska 35", "4", 160, vlasnik1, 1);
+			Nekretnina kuca2 = new Kuca("Somborska 2", "3", 250, vlasnik2, 536);
+			Nekretnina stan1 = new Stan("Beogradska 26", "1", 69, vlasnik3, 15, 22);
+			Nekretnina stan2 = new Stan("Zicka 221", "4", 53, vlasnik4, 4, 18);
 
 			// ispisujemo podatke o vlasnicima i nekretninama
 			System.out.println(kuca1);

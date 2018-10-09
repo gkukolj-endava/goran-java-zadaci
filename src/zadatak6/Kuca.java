@@ -11,7 +11,7 @@ public class Kuca extends Nekretnina {
 	private double povrsinaOkucnice;
 	private static final String POGRESAN_UNOS_POVRSINE = "Pogresan unos povrsine okucnice, unesite broj veci od nule";
 
-	protected Kuca(String adresa, int zona, double kvadratura, Vlasnik vlasnik, double povrsinaOkucnice) {
+	protected Kuca(String adresa, String zona, double kvadratura, Vlasnik vlasnik, double povrsinaOkucnice) {
 		super(adresa, zona, kvadratura, vlasnik);
 		// provera da li je uneta povrsina veca od 0, ako nije izbacuje izuzetak
 		if (povrsinaOkucnice > 0) {
@@ -40,7 +40,7 @@ public class Kuca extends Nekretnina {
 	@Override
 	public String toString() {
 		return new StringBuilder(super.toString()).append(",\n povrsine okucnice = ").append(povrsinaOkucnice)
-				.append(", je kuca koja kosta ").append(izracunajCenuNekretnine())
+				.append(",\n je kuca koja kosta ").append(izracunajCenuNekretnine())
 				.append("\n\n  ***********************\n").toString();
 	}
 
