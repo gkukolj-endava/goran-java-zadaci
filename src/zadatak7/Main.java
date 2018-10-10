@@ -4,7 +4,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -24,9 +25,11 @@ import java.util.Scanner;
 public class Main {
 
 	private static Scanner unos;
-	private static final String LOS_UNOS_IMENA = "Rec mora da sadrzi samo slova";
-	private static final String LOS_UNOS_POENA = "Broj poena sme da bude od 0 do 100";
-	private static final String REG_EXP_1 = "^[\\-'\\s]?[a-zA-Z]+";
+	private static final String LOS_UNOS_IMENA = "Ime mora da pocne velikim slovom,sve ostalo mala slova, i da sadrzi samo slova";
+	private static final String LOS_UNOS_PREZIMENA = "Prezime mora da pocne velikim slovom,sve ostalo mala slova, i moze da sadrzi apostrof";
+	private static final String LOS_UNOS_POENA = "Pogresno ste uneli broj poena, ";
+	private static final String REG_EXP_1 = "^[A-Z][\\-'\\s]?[a-z]+";
+	private static final String REG_EXP_2 = "^([A-Z'][a-z]*)+$";
 
 	public static void main(String[] args) {
 
@@ -34,33 +37,33 @@ public class Main {
 		boolean unesiNovogStudenta = false;
 
 		// kreiramo listu studenata
-		ArrayList<Student> studenti = new ArrayList<>();
+		List<Student> studenti = new ArrayList<>();
 
 		do {
 			// unosimo podatke o studentima
 			Student student = new Student();
 			System.out.println("Unesite ime studenta: ");
-			student.setIme(unosReci());
+			student.setIme(unosImena());
 			System.out.println("Unesite prezime studenta: ");
-			student.setPrezime(unosReci());
+			student.setPrezime(unosPrezimena());
 			student.setBrojPoena(unosBroja());
 
 			// dodajemo studente u listu
 			studenti.add(student);
 
 			// provera da li zelimo da unosimo jos podataka
-			System.out.println("Ako ne zelite da unosite vise studenata upisite \'stampaj\'");
-			if (unosReci().equalsIgnoreCase("stampaj")) {
+			System.out.println(
+					"Student je unet, ako ne zelite da unosite vise studenata i sacuvate fajl upisite \'stampaj\',\n"
+							+ " u suprotnom upisite bilo koji karakter za nastavak unosa");
+			if (unosOdgovoraZaNastavak().equalsIgnoreCase("stampaj")) {
 				unesiNovogStudenta = true;
-				System.out.println("Upis je sacuvan!");
+				System.out.println(
+						"Upis je sacuvan u fajlu \"ocene.txt\", koji se nalazi na lokaciji C:\\Users\\goran.kukolj\\eclipse-workspace\\JavaZadaci\\ocene.txt!");
 			}
 		} while (!unesiNovogStudenta);
 
-		// sortiramo listu studenata
-		Collections.sort(studenti);
-
-		// okrecemo redosled liste da bi upisivali od najvise ka najmanje
-		Collections.reverse(studenti);
+		// sortiramo listu studenata i okrecemo od najvise ka najmanje poena
+		studenti.sort(Comparator.comparing(Student::getBrojPoena).reversed());
 
 		// kreiramo fajl gde upisujemo studente i poene
 		File file = new File("ocene.txt");
@@ -68,9 +71,11 @@ public class Main {
 		// upis u fajl
 		try (PrintWriter upis = new PrintWriter(file)) {
 			for (Student student : studenti) {
-				upis.println(student);
+				upis.print(student.getIme() + " ");
+				upis.print(student.getPrezime() + " ");
+				upis.print(student.getBrojPoena() + " ");
+				upis.println(student.ocenaStudenta());
 			}
-			upis.close();
 		} catch (FileNotFoundException e) {
 			System.out.println(e.getMessage());
 		}
@@ -78,7 +83,7 @@ public class Main {
 		unos.close();
 	}
 
-	private static String unosReci() {
+	private static String unosImena() {
 		boolean logic = true;
 		String ime = "";
 		while (logic) {
@@ -91,17 +96,38 @@ public class Main {
 		return ime;
 	}
 
+	private static String unosPrezimena() {
+		boolean logic = true;
+		String prezime = "";
+		while (logic) {
+			prezime = unos.next();
+			if (prezime.matches(REG_EXP_2)) {
+				logic = false;
+			} else
+				System.out.println(LOS_UNOS_PREZIMENA);
+		}
+		return prezime;
+	}
+
 	private static int unosBroja() {
 		// metod za unos broja od strane korisnika
 		int a = -1;
 		do {
-			System.out.println("Unesite broj poena sa testa: ");
+			System.out.println("Unesite broj poena od 0 do 100: ");
 			if (!unos.hasNextInt()) {
 				unos.next();
 				System.out.println(LOS_UNOS_POENA);
-			} else
+			} else {
 				a = unos.nextInt();
+				if (a < 0 || a > 100) {
+					System.out.println(LOS_UNOS_POENA);
+				}
+			}
 		} while (!(a >= 0 && a <= 100));
 		return a;
+	}
+
+	private static String unosOdgovoraZaNastavak() {
+		return unos.next();
 	}
 }

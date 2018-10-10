@@ -5,20 +5,18 @@ package zadatak7;
  * @author Goran.Kukolj
  *
  */
-public class Student implements Comparable<Student> {
+public class Student {
 	private String ime;
 	private String prezime;
 	private int brojPoena;
 
 	protected Student(String ime, String prezime, int brojPoena) {
-		super();
 		this.ime = ime;
 		this.prezime = prezime;
 		this.brojPoena = brojPoena;
 	}
 
 	protected Student() {
-		super();
 	}
 
 	public String getIme() {
@@ -51,7 +49,7 @@ public class Student implements Comparable<Student> {
 	 * @param brojPoena
 	 * @return int ocena
 	 */
-	public int ocenaStudenta(int brojPoena) {
+	public int ocenaStudenta() {
 		if (this.brojPoena > 90) {
 			return 10;
 		} else if (this.brojPoena >= 81) {
@@ -67,19 +65,8 @@ public class Student implements Comparable<Student> {
 	}
 
 	@Override
-	public int compareTo(Student s) {
-		if (this.brojPoena > s.brojPoena) {
-			return 1;
-		} else if (this.brojPoena == s.brojPoena) {
-			return 0;
-		} else
-			return -1;
-	}
-
-	@Override
 	public String toString() {
-		return new StringBuilder(ime).append(" ").append(prezime).append(" ").append(brojPoena)
-				.append(" poena, dobio je ocenu ").append(ocenaStudenta(brojPoena)).toString();
+		return "Student [ime=" + ime + ", prezime=" + prezime + ", brojPoena=" + brojPoena + "]";
 	}
 
 }
