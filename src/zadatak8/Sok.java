@@ -7,7 +7,7 @@ package zadatak8;
  */
 public class Sok extends PrehrambeniProizvod {
 	private String ukusSoka;
-	private static final double PDV_SOKA = 0.2;
+	private static final float PDV_SOKA = 0.2f;
 
 	public Sok(String imeProizvoda, double cenaProizvoda, String rokUpotrebe, String ukusSoka) {
 		super(imeProizvoda, cenaProizvoda, rokUpotrebe);

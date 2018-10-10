@@ -7,7 +7,7 @@ package zadatak8;
  */
 public class MlecniProizvod extends PrehrambeniProizvod {
 	private String porekloMleka;
-	private static final double PDV_MLEKA = 0.2;
+	private static final float PDV_MLEKA = 0.2f;
 
 	public MlecniProizvod(String imeProizvoda, double cenaProizvoda, String rokUpotrebe, String porekloMleka) {
 		super(imeProizvoda, cenaProizvoda, rokUpotrebe);

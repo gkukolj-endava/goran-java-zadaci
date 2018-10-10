@@ -7,7 +7,7 @@ package zadatak8;
  */
 public class Meso extends PrehrambeniProizvod {
 	private String vrstaMesa;
-	private static final double PDV_MESA = 0.08;
+	private static final float PDV_MESA = 0.08f;
 
 	public Meso(String imeProizvoda, double cenaProizvoda, String rokUpotrebe, String vrstaMesa) {
 		super(imeProizvoda, cenaProizvoda, rokUpotrebe);

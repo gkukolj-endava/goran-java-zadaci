@@ -6,7 +6,7 @@ package zadatak8;
  *
  */
 public class Kafa extends PrehrambeniProizvod {
-	private static final double PDV_KAFE = 0.08;
+	private static final float PDV_KAFE = 0.08f;
 	private TipKafe tipKafe;
 
 	public Kafa(String imeProizvoda, double cenaProizvoda, String rokUpotrebe, TipKafe tipKafe) {
