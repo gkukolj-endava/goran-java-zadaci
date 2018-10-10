@@ -64,9 +64,4 @@ public class Student {
 			return 5;
 	}
 
-	@Override
-	public String toString() {
-		return "Student [ime=" + ime + ", prezime=" + prezime + ", brojPoena=" + brojPoena + "]";
-	}
-
 }

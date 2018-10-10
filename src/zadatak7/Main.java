@@ -28,8 +28,8 @@ public class Main {
 	private static final String LOS_UNOS_IMENA = "Ime mora da pocne velikim slovom,sve ostalo mala slova, i da sadrzi samo slova";
 	private static final String LOS_UNOS_PREZIMENA = "Prezime mora da pocne velikim slovom,sve ostalo mala slova, i moze da sadrzi apostrof";
 	private static final String LOS_UNOS_POENA = "Pogresno ste uneli broj poena, ";
-	private static final String REG_EXP_1 = "^[A-Z][\\-'\\s]?[a-z]+";
-	private static final String REG_EXP_2 = "^([A-Z'][a-z]*)+$";
+	private static final String REG_EXP_1 = "^[A-Z][a-z]+";
+	private static final String REG_EXP_2 = "^[A-Z]['\\sA-Z]*?[a-z]+$";// "^([a-zA-Z ']*)+$";
 
 	public static void main(String[] args) {
 
@@ -43,9 +43,9 @@ public class Main {
 			// unosimo podatke o studentima
 			Student student = new Student();
 			System.out.println("Unesite ime studenta: ");
-			student.setIme(unosImena());
+			student.setIme(unosReci("ime"));
 			System.out.println("Unesite prezime studenta: ");
-			student.setPrezime(unosPrezimena());
+			student.setPrezime(unosReci("prezime"));
 			student.setBrojPoena(unosBroja());
 
 			// dodajemo studente u listu
@@ -58,7 +58,7 @@ public class Main {
 			if (unosOdgovoraZaNastavak().equalsIgnoreCase("stampaj")) {
 				unesiNovogStudenta = true;
 				System.out.println(
-						"Upis je sacuvan u fajlu \"ocene.txt\", koji se nalazi na lokaciji C:\\Users\\goran.kukolj\\eclipse-workspace\\JavaZadaci\\ocene.txt!");
+						"Upis je sacuvan u fajlu \"ocene.txt\", koji se nalazi na lokaciji \\zadatak7\\ocene.txt!");
 			}
 		} while (!unesiNovogStudenta);
 
@@ -66,7 +66,7 @@ public class Main {
 		studenti.sort(Comparator.comparing(Student::getBrojPoena).reversed());
 
 		// kreiramo fajl gde upisujemo studente i poene
-		File file = new File("ocene.txt");
+		File file = new File("C:\\Users\\goran.kukolj\\eclipse-workspace\\JavaZadaci\\src\\zadatak7\\ocene.txt");
 
 		// upis u fajl
 		try (PrintWriter upis = new PrintWriter(file)) {
@@ -83,30 +83,24 @@ public class Main {
 		unos.close();
 	}
 
-	private static String unosImena() {
+	private static String unosReci(String rec) {
 		boolean logic = true;
 		String ime = "";
 		while (logic) {
-			ime = unos.next();
-			if (ime.matches(REG_EXP_1)) {
-				logic = false;
-			} else
-				System.out.println(LOS_UNOS_IMENA);
+			ime = unos.nextLine();
+			if (rec.equals("ime")) {
+				if (ime.matches(REG_EXP_1)) {
+					logic = false;
+				} else
+					System.out.println(LOS_UNOS_IMENA);
+			} else {
+				if (ime.matches(REG_EXP_2)) {
+					logic = false;
+				} else
+					System.out.println(LOS_UNOS_PREZIMENA);
+			}
 		}
 		return ime;
-	}
-
-	private static String unosPrezimena() {
-		boolean logic = true;
-		String prezime = "";
-		while (logic) {
-			prezime = unos.next();
-			if (prezime.matches(REG_EXP_2)) {
-				logic = false;
-			} else
-				System.out.println(LOS_UNOS_PREZIMENA);
-		}
-		return prezime;
 	}
 
 	private static int unosBroja() {
