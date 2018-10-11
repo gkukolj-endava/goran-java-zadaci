@@ -10,12 +10,6 @@ public class Student {
 	private String prezime;
 	private int brojPoena;
 
-	protected Student(String ime, String prezime, int brojPoena) {
-		this.ime = ime;
-		this.prezime = prezime;
-		this.brojPoena = brojPoena;
-	}
-
 	protected Student() {
 	}
 

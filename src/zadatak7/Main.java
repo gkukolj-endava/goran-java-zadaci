@@ -2,6 +2,7 @@ package zadatak7;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -29,12 +30,15 @@ public class Main {
 	private static final String LOS_UNOS_PREZIMENA = "Prezime mora da pocne velikim slovom,sve ostalo mala slova, i moze da sadrzi apostrof";
 	private static final String LOS_UNOS_POENA = "Pogresno ste uneli broj poena, ";
 	private static final String REG_EXP_1 = "^[A-Z][a-z]+";
-	private static final String REG_EXP_2 = "^[A-Z]['\\sA-Z]*?[a-z]+$";// "^([a-zA-Z ']*)+$";
+	private static final String REG_EXP_2 = "^[A-Z]['\\sA-Z]*?[a-z]+$";
 
 	public static void main(String[] args) {
 
 		unos = new Scanner(System.in);
 		boolean unesiNovogStudenta = false;
+
+		// kreiramo fajl gde upisujemo studente i poene
+		File file = new File("ocene.txt");
 
 		// kreiramo listu studenata
 		List<Student> studenti = new ArrayList<>();
@@ -57,16 +61,18 @@ public class Main {
 							+ " u suprotnom upisite bilo koji karakter za nastavak unosa");
 			if (unosOdgovoraZaNastavak().equalsIgnoreCase("stampaj")) {
 				unesiNovogStudenta = true;
-				System.out.println(
-						"Upis je sacuvan u fajlu \"ocene.txt\", koji se nalazi na lokaciji \\zadatak7\\ocene.txt!");
+				try {
+					System.out.println("Upis je sacuvan u fajlu \"ocene.txt\", koji se nalazi na lokaciji "
+							+ file.getCanonicalPath());
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		} while (!unesiNovogStudenta);
 
 		// sortiramo listu studenata i okrecemo od najvise ka najmanje poena
 		studenti.sort(Comparator.comparing(Student::getBrojPoena).reversed());
-
-		// kreiramo fajl gde upisujemo studente i poene
-		File file = new File("C:\\Users\\goran.kukolj\\eclipse-workspace\\JavaZadaci\\src\\zadatak7\\ocene.txt");
 
 		// upis u fajl
 		try (PrintWriter upis = new PrintWriter(file)) {
