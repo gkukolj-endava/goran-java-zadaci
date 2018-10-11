@@ -40,7 +40,6 @@ public class Student {
 	/**
 	 * Pretvara poene sa testa u ocene
 	 * 
-	 * @param brojPoena
 	 * @return int ocena
 	 */
 	public int ocenaStudenta() {
