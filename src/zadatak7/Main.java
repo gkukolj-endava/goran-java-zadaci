@@ -65,7 +65,7 @@ public class Main {
 					System.out.println("Upis je sacuvan u fajlu \"ocene.txt\", koji se nalazi na lokaciji "
 							+ file.getCanonicalPath());
 				} catch (IOException e) {
-					e.printStackTrace();
+					System.out.println(e.getMessage());
 				}
 			}
 		} while (!unesiNovogStudenta);
